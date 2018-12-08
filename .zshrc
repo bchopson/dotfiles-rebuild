@@ -5,6 +5,7 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle command-not-found
 antigen bundle tmux
+antigen bundle ssh-agent
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
