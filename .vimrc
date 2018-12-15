@@ -6,6 +6,12 @@ if (has('win16') || has('win32') || has('win64'))
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after
 endif
 
+if !isdirectory($HOME.'/.vim/swap/')
+  call mkdir($HOME.'/.vim/swap/')
+endif
+
+set directory=$HOME/.vim/swap/
+
 " load the plugins
 silent! source $HOME/plugs.vim
 
