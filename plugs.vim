@@ -10,6 +10,7 @@ call plug#begin($HOME . '/.vim/plugged')
 Plug 'rodjek/vim-puppet'
 Plug 'tpope/vim-markdown'
 Plug 'moll/vim-node'
+Plug 'lepture/vim-jinja'
 
 " front end web development
 Plug 'jelera/vim-javascript-syntax'

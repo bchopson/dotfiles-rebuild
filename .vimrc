@@ -6,6 +6,10 @@ if (has('win16') || has('win32') || has('win64'))
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after
 endif
 
+if !isdirectory($HOME.'/.vim/')
+  call mkdir($HOME.'/.vim/')
+endif
+
 if !isdirectory($HOME.'/.vim/swap/')
   call mkdir($HOME.'/.vim/swap/')
 endif
