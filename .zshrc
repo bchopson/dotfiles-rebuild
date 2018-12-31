@@ -1,3 +1,5 @@
+export TERM=xterm-256color-italic
+
 source $HOME/dotfiles/antigen.zsh
 
 antigen use oh-my-zsh

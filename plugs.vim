@@ -11,6 +11,7 @@ Plug 'rodjek/vim-puppet'
 Plug 'tpope/vim-markdown'
 Plug 'moll/vim-node'
 Plug 'lepture/vim-jinja'
+Plug 'vim-python/python-syntax'
 
 " front end web development
 Plug 'jelera/vim-javascript-syntax'
@@ -65,5 +66,6 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'tomasr/molokai'
 Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
+Plug 'drewtempelmeyer/palenight.vim'
 
 call plug#end()

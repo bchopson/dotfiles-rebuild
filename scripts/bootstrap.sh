@@ -15,6 +15,8 @@ symlink_files() {
   success "linking $1 to $2"
 }
 
+vic "$DOTFILES/xterm-256color-italic.terminfo"
+
 install_dotfiles() {
   for source in `find $DOTFILES -maxdepth 1 | grep -v 'scripts' | grep -v '.git$' | grep -v '.dotfiles$' | grep -v '.gitmodules$' | grep -v '.gitattributes$' | grep -v 'antigen.zsh'`; do
     destination="$HOME/`basename $source`"

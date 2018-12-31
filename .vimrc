@@ -20,6 +20,7 @@ set directory=$HOME/.vim/swap/
 silent! source $HOME/plugs.vim
 
 " turn on syntax highlighting
+let g:python_highlight_all=1
 syntax on
 
 " change to the correct indention and plugins dependent on the file type
@@ -307,6 +308,10 @@ endif
 if &term == "screen"
   set t_Co=256
 end
+
+let g:palenight_terminal_italics=1
+colorscheme palenight
+set termguicolors
 
 " load a personal vimrc if one exists
 let s:personalrc = expand($HOME . '/.personal.vimrc')
