@@ -25,7 +25,7 @@ Plug 'tpope/vim-haml'
 " vim helpers
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/syntastic'
-Plug 'Lokaltog/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'honza/vim-snippets'

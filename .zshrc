@@ -1,4 +1,5 @@
 export TERM=xterm-256color-italic
+export NVM_LAZY_LOAD=true
 
 source $HOME/dotfiles/antigen.zsh
 
@@ -9,6 +10,7 @@ antigen bundle command-not-found
 antigen bundle tmux
 antigen bundle ssh-agent
 antigen bundle vi-mode
+antigen bundle lukechilds/zsh-nvm
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
