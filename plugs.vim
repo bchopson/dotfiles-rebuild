@@ -14,13 +14,14 @@ Plug 'lepture/vim-jinja'
 Plug 'vim-python/python-syntax'
 
 " front end web development
-Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'elzr/vim-json'
 Plug 'kchmck/vim-coffee-script'
 Plug 'burnettk/vim-angular'
 Plug 'othree/html5.vim'
 Plug 'tpope/vim-haml'
+Plug 'mxw/vim-jsx'
 
 " vim helpers
 Plug 'ntpeters/vim-better-whitespace'

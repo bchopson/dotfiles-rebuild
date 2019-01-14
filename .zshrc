@@ -1,5 +1,6 @@
 export TERM=xterm-256color-italic
 export NVM_LAZY_LOAD=true
+export EDITOR=vim
 
 source $HOME/dotfiles/antigen.zsh
 
