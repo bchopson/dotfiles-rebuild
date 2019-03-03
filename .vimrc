@@ -53,6 +53,7 @@ set history=1000
 
 " configure wildignore
 set wildignore+=*/tmp/*,*.so,*.gz,*.swp,*.bak,*.pyc,*.class
+set wildignorecase
 
 " when we turn on set list, we want to see these types of whitespace:
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -255,6 +256,7 @@ nnoremap <silent> <F10> :set cursorline!<CR>:set cursorcolumn!<CR>
 
 " GitGutter Settings
 let g:gitgutter_map_keys = 0
+set updatetime=100
 
 " CtrlP Settings
 let g:ctrlp_custom_ignore = 'tags'

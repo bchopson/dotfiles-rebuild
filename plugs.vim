@@ -6,6 +6,8 @@ endif
 
 call plug#begin($HOME . '/.vim/plugged')
 
+Plug 'editorconfig/editorconfig-vim'
+
 " language plugins
 Plug 'rodjek/vim-puppet'
 Plug 'tpope/vim-markdown'
@@ -22,6 +24,7 @@ Plug 'burnettk/vim-angular'
 Plug 'othree/html5.vim'
 Plug 'tpope/vim-haml'
 Plug 'mxw/vim-jsx'
+Plug 'mustache/vim-mustache-handlebars'
 
 " vim helpers
 Plug 'ntpeters/vim-better-whitespace'
