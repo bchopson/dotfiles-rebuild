@@ -1,6 +1,8 @@
 " lose vi compatibility
 set nocompatible
 
+set nomodeline
+
 " use ~/.vim for windows too
 if (has('win16') || has('win32') || has('win64'))
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after
@@ -182,18 +184,16 @@ if executable('ag')
   let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
   " ag is fast enough that we don't need the CtrlP cache
   let g:ctrlp_use_caching=0
-
-  " settings
-  nnoremap <leader>a :Ag!<space>
   let g:aghighlight=1
-
 elseif executable('ack')
   " use ack instead of grep
   set grepprg=ack\ --nocolor
   " settings
-  nnoremap <leader>a :Ack!<space>
   let g:ackhighlight=1
 endif
+" settings
+cnoreabbrev Ack Ack!
+nnoremap <leader>a :Ack!<space>
 
 " clear highlighting and redraw the screen
 nnoremap <silent> <leader>l :redraw!<CR>:nohl<CR><ESC>
@@ -227,12 +227,16 @@ nnoremap <silent> <leader>q :q<CR>
 nnoremap <silent> <leader>Q :q!<CR>
 
 " fugitive shortcuts
-nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gl :0Glog<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gc :Gcommit -v<CR>
 nnoremap <silent> <leader>gr :Gread<CR>
+
+" gitgutter shortcuts
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
 
 " map Y to yank until EOL
 nnoremap Y y$
@@ -262,24 +266,13 @@ set updatetime=100
 let g:ctrlp_custom_ignore = 'tags'
 
 " Syntastic settings
-let g:syntastic_ruby_checkers = ['mri']
 let g:syntastic_mode_map = { "mode": "active", "passive_filetypes": ["java"] }
-
-" vim-rspec settings
-if filereadable(getcwd() . "/bin/rspec")
-  let g:rspec_command = "Dispatch bundle exec spring rspec {spec}"
-else
-  let g:rspec_command = "Dispatch bundle exec rspec {spec}"
-endif
-nnoremap <silent> <leader>Rc :call RunCurrentSpecFile()<CR>
-nnoremap <silent> <leader>Rn :call RunNearestSpec()<CR>
-nnoremap <silent> <leader>Rl :call RunLastSpec()<CR>
-nnoremap <silent> <leader>Ra :call RunAllSpecs()<CR>
+let g:syntastic_javascript_checkers = ['eslint']
 
 " use a dark background
 set background=dark
 
-let base16colorspace=256
+" let base16colorspace=256
 
 " make the GUI nice
 if has('gui_running')
@@ -311,8 +304,12 @@ if &term == "screen"
   set t_Co=256
 end
 
-let g:palenight_terminal_italics=1
-colorscheme palenight
+" let g:palenight_terminal_italics=1
+" colorscheme palenight
+
+colorscheme gruvbox
+highlight Comment cterm=italic gui=italic
+
 set termguicolors
 
 " load a personal vimrc if one exists

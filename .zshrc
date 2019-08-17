@@ -18,6 +18,10 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
 
+__git_files () {
+    _wanted files expl 'local files' _files
+}
+
 source $HOME/dotfiles/antigen.zsh
 
 antigen use oh-my-zsh
@@ -28,6 +32,7 @@ antigen bundle tmux
 antigen bundle ssh-agent
 antigen bundle vi-mode
 antigen bundle lukechilds/zsh-nvm
+antigen bundle virtualenvwrapper
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
@@ -40,3 +45,8 @@ if [[ -a ~/.personal.after.rc ]]; then
 fi
 
 setopt no_share_history
+
+export PATH="/home/ben/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"

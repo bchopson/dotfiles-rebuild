@@ -14,21 +14,24 @@ Plug 'tpope/vim-markdown'
 Plug 'moll/vim-node'
 Plug 'lepture/vim-jinja'
 Plug 'vim-python/python-syntax'
+Plug 'zah/nim.vim'
+Plug 'raimon49/requirements.txt.vim'
+Plug 'davidhalter/jedi-vim'
 
 " front end web development
 Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'elzr/vim-json'
-Plug 'kchmck/vim-coffee-script'
 Plug 'burnettk/vim-angular'
 Plug 'othree/html5.vim'
 Plug 'tpope/vim-haml'
 Plug 'mxw/vim-jsx'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'ap/vim-css-color'
 
 " vim helpers
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'scrooloose/syntastic'
+Plug 'dense-analysis/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
@@ -40,8 +43,11 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'mtth/scratch.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'PeterRincker/vim-argumentative'
+Plug 'craigemery/vim-autotag'
 
 " tpope
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -60,10 +66,9 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " quick searching
 if executable('ag')
-  Plug 'rking/ag.vim'
-elseif executable('ack')
-  Plug 'mileszs/ack.vim'
+  let g:ackprg = 'ag --vimgrep'
 endif
+Plug 'mileszs/ack.vim'
 
 " color themes
 Plug 'nanotech/jellybeans.vim'
@@ -71,5 +76,10 @@ Plug 'tomasr/molokai'
 Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'morhetz/gruvbox'
+Plug 'alessandroyorba/despacio'
+Plug 'alessandroyorba/alduin'
+Plug 'alessandroyorba/arcadia'
+Plug 'tlhr/anderson.vim'
 
 call plug#end()
