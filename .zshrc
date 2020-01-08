@@ -17,6 +17,7 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
   zle -N down-line-or-beginning-search
   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
+function fzfx() { fzf --print0 | xargs -0 xdg-open }
 
 __git_files () {
     _wanted files expl 'local files' _files

@@ -17,6 +17,9 @@ Plug 'vim-python/python-syntax'
 Plug 'zah/nim.vim'
 Plug 'raimon49/requirements.txt.vim'
 Plug 'davidhalter/jedi-vim'
+Plug 'fisadev/vim-isort'
+Plug 'mattn/emmet-vim'
+Plug 'elixir-editors/vim-elixir'
 
 " front end web development
 Plug 'pangloss/vim-javascript'
@@ -63,6 +66,10 @@ Plug 'tpope/vim-speeddating'
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
+
+" GitHub
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
 
 " quick searching
 if executable('ag')

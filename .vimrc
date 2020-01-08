@@ -151,6 +151,7 @@ nnoremap <silent> <leader>. <C-^>
 nnoremap <silent> <leader>p :CtrlP<CR>
 nnoremap <silent> <leader>P :CtrlPTag<CR>
 nnoremap <silent> <leader>b :CtrlPBuffer<CR>
+let g:ctrlp_switch_buffer = 0
 
 " Easy Align keymaps
 vmap <silent> <CR> <Plug>(EasyAlign)
@@ -265,14 +266,14 @@ set updatetime=100
 " CtrlP Settings
 let g:ctrlp_custom_ignore = 'tags'
 
-" Syntastic settings
-let g:syntastic_mode_map = { "mode": "active", "passive_filetypes": ["java"] }
-let g:syntastic_javascript_checkers = ['eslint']
+set tags=tags;/
+
+" ALE settings
+nmap <silent> <leader>k <Plug>(ale_previous_wrap)
+nmap <silent> <leader>j <Plug>(ale_next_wrap)
 
 " use a dark background
 set background=dark
-
-" let base16colorspace=256
 
 " make the GUI nice
 if has('gui_running')
@@ -304,11 +305,11 @@ if &term == "screen"
   set t_Co=256
 end
 
-" let g:palenight_terminal_italics=1
-" colorscheme palenight
+let g:palenight_terminal_italics=1
+colorscheme palenight
 
-colorscheme gruvbox
-highlight Comment cterm=italic gui=italic
+" colorscheme gruvbox
+" highlight Comment cterm=italic gui=italic
 
 set termguicolors
 
