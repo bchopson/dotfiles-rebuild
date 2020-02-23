@@ -17,9 +17,15 @@ Plug 'vim-python/python-syntax'
 Plug 'zah/nim.vim'
 Plug 'raimon49/requirements.txt.vim'
 Plug 'davidhalter/jedi-vim'
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'heavenshell/vim-pydocstring'
 Plug 'fisadev/vim-isort'
 Plug 'mattn/emmet-vim'
 Plug 'elixir-editors/vim-elixir'
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 
 " front end web development
 Plug 'pangloss/vim-javascript'
@@ -39,7 +45,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'honza/vim-snippets'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'junegunn/vim-easy-align'
 Plug 'haya14busa/incsearch.vim'
@@ -48,6 +53,9 @@ Plug 'mtth/scratch.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'craigemery/vim-autotag'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " tpope
 Plug 'tpope/vim-abolish'
@@ -80,7 +88,6 @@ Plug 'mileszs/ack.vim'
 " color themes
 Plug 'nanotech/jellybeans.vim'
 Plug 'tomasr/molokai'
-Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'morhetz/gruvbox'

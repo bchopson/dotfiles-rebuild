@@ -1,6 +1,8 @@
 export TERM=xterm-256color-italic
 export NVM_LAZY_LOAD=true
-export EDITOR=vim
+export VISUAL=nvim
+export EDITOR=$VISUAL
+export FZF_DEFAULT_COMMAND='ag -g ""'
 # Up arrow history completion
 export DEBIAN_PREVENT_KEYBOARD_CHANGES=yes
 bindkey '^[[A' up-line-or-search
@@ -34,6 +36,7 @@ antigen bundle ssh-agent
 antigen bundle vi-mode
 antigen bundle lukechilds/zsh-nvm
 antigen bundle virtualenvwrapper
+# antigen bundle fzf
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
@@ -51,3 +54,7 @@ export PATH="/home/ben/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(direnv hook zsh)"
