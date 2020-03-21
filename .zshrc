@@ -2,7 +2,7 @@ export TERM=xterm-256color-italic
 export NVM_LAZY_LOAD=true
 export VISUAL=nvim
 export EDITOR=$VISUAL
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 # Up arrow history completion
 export DEBIAN_PREVENT_KEYBOARD_CHANGES=yes
 bindkey '^[[A' up-line-or-search
@@ -35,8 +35,9 @@ antigen bundle tmux
 antigen bundle ssh-agent
 antigen bundle vi-mode
 antigen bundle lukechilds/zsh-nvm
-antigen bundle virtualenvwrapper
-# antigen bundle fzf
+antigen bundle fzf
+
+alias fd=fdfind
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
@@ -44,17 +45,36 @@ antigen theme robbyrussell
 
 antigen apply
 
-if [[ -a ~/.personal.after.rc ]]; then
-  source ~/.personal.after.rc
-fi
-
 setopt no_share_history
 
 export PATH="/home/ben/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+# TODO: remove virtualenvwrapper settings after direnv migration finished
+export WORKON_HOME="/home/ben/.local/share/virtualenvs"
+alias pyv="pyenv virtualenvwrapper"
+function wk() { pyenv virtualenvwrapper && workon $(basename $(pwd)) }
+
+# weather
+alias wttr="curl wttr.in"
+
+# direnv
+eval "$(direnv hook zsh)"
+alias tmux='direnv exec / tmux'
+
+alias tl="tmuxp load"
+
+# restore virtualenv indicator to prompt
+show_virtual_env() {
+  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+    echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+PS1='$(show_virtual_env)'$PS1
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval "$(direnv hook zsh)"
+if [[ -a ~/.personal.after.rc ]]; then
+  source ~/.personal.after.rc
+fi
+

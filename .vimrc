@@ -30,6 +30,9 @@ filetype on
 filetype indent on
 filetype plugin on
 
+" unfold everything (looking at you rst)
+set foldlevel=99
+
 " turn on line numbers
 set number
 
@@ -171,15 +174,8 @@ map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
 " set up quick searching ag/ack
-if executable('ag')
-  " use ag instead of grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " use ag for CtrlP
-  let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
-  " ag is fast enough that we don't need the CtrlP cache
-  let g:ctrlp_use_caching=0
-  let g:aghighlight=1
+if executable('rg')
+  set grepprg=rg\ --vimgrep
 elseif executable('ack')
   " use ack instead of grep
   set grepprg=ack\ --nocolor

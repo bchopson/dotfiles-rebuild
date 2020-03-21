@@ -18,13 +18,13 @@ Plug 'zah/nim.vim'
 Plug 'raimon49/requirements.txt.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'heavenshell/vim-pydocstring'
+" Neovim support removed in 2.0.0?
+" Plug 'heavenshell/vim-pydocstring'
 Plug 'fisadev/vim-isort'
 Plug 'mattn/emmet-vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 
 " front end web development
@@ -52,7 +52,6 @@ Plug 'terryma/vim-expand-region'
 Plug 'mtth/scratch.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'PeterRincker/vim-argumentative'
-Plug 'craigemery/vim-autotag'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -95,5 +94,6 @@ Plug 'alessandroyorba/despacio'
 Plug 'alessandroyorba/alduin'
 Plug 'alessandroyorba/arcadia'
 Plug 'tlhr/anderson.vim'
+Plug 'wadackel/vim-dogrun'
 
 call plug#end()
