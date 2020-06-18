@@ -1,0 +1,10 @@
+[character]
+symbol = "π"
+vicmd_symbol = "v"
+
+[directory]
+style = "bold blue"
+
+[python]
+pyenv_version_name = true
+style = "bold green"

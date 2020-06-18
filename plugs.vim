@@ -12,12 +12,16 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'rodjek/vim-puppet'
 Plug 'tpope/vim-markdown'
 Plug 'moll/vim-node'
-Plug 'lepture/vim-jinja'
+Plug 'glench/vim-jinja2-syntax'
 Plug 'vim-python/python-syntax'
+Plug 'psf/black', { 'commit': 'ce14fa8b497bae2b50ec48b3bd7022573a59cdb1' }
 Plug 'zah/nim.vim'
 Plug 'raimon49/requirements.txt.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 " Neovim support removed in 2.0.0?
 " Plug 'heavenshell/vim-pydocstring'
 Plug 'fisadev/vim-isort'
@@ -26,6 +30,9 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+" For deoplete, vim only
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 " front end web development
 Plug 'pangloss/vim-javascript'
@@ -52,6 +59,8 @@ Plug 'terryma/vim-expand-region'
 Plug 'mtth/scratch.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'PeterRincker/vim-argumentative'
+Plug 'farmergreg/vim-lastplace'
+Plug 'preservim/nerdtree'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -64,12 +73,15 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
+" Mostly :Verbose to view mappings
+Plug 'tpope/vim-scriptease'
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -79,21 +91,21 @@ Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
 
 " quick searching
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep'
 endif
 Plug 'mileszs/ack.vim'
 
 " color themes
+Plug 'lifepillar/vim-colortemplate'
 Plug 'nanotech/jellybeans.vim'
 Plug 'tomasr/molokai'
 Plug 'joshdick/onedark.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'morhetz/gruvbox'
-Plug 'alessandroyorba/despacio'
-Plug 'alessandroyorba/alduin'
-Plug 'alessandroyorba/arcadia'
-Plug 'tlhr/anderson.vim'
-Plug 'wadackel/vim-dogrun'
+Plug 'ayu-theme/ayu-vim'
+Plug 'danilo-augusto/vim-afterglow'
+Plug 'fcpg/vim-farout'
+Plug 'liuchengxu/space-vim-theme'
 
 call plug#end()
