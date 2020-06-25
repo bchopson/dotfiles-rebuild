@@ -107,5 +107,7 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'fcpg/vim-farout'
 Plug 'liuchengxu/space-vim-theme'
+Plug 'rhysd/vim-color-spring-night'
+Plug 'aonemd/kuroi.vim'
 
 call plug#end()

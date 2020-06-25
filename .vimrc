@@ -307,13 +307,6 @@ if has('gui_running')
 
   " default to line and column highlighting
   set cursorline cursorcolumn
-
-  " set up some decent fonts
-  if has("gui_win32")
-    set guifont=Consolas:h10:cANSI
-  elseif has("gui_macvim")
-    set guifont=Source\ Code\ Pro:h14
-  endif
 endif
 
 " if tmux or screen is being used, default to 256 colors
@@ -321,16 +314,18 @@ if &term == "screen"
   set t_Co=256
 end
 
-set termguicolors
-
 " let g:palenight_terminal_italics=1
 " colorscheme palenight
 
 " let g:gruvbox_italic=1
 " colorscheme gruvbox
 
-colorscheme space_vim_theme
+" colorscheme space_vim_theme
 " highlight Comment cterm=italic gui=italic
+
+colorscheme spring-night
+let g:airline_theme = 'spring_night'
+set termguicolors
 
 " load a personal vimrc if one exists
 let s:personalrc = expand($HOME . '/.personal.vimrc')
