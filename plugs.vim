@@ -43,7 +43,7 @@ Plug 'othree/html5.vim'
 Plug 'tpope/vim-haml'
 Plug 'mxw/vim-jsx'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'ap/vim-css-color'
+Plug 'chrisbra/Colorizer'
 
 " vim helpers
 Plug 'ntpeters/vim-better-whitespace'
@@ -61,6 +61,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'farmergreg/vim-lastplace'
 Plug 'preservim/nerdtree'
+Plug 'lambdalisue/suda.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -107,7 +108,10 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'fcpg/vim-farout'
 Plug 'liuchengxu/space-vim-theme'
-Plug 'rhysd/vim-color-spring-night'
 Plug 'aonemd/kuroi.vim'
+Plug 'flrnd/candid.vim'
+Plug 'Rigellute/shades-of-purple.vim'
+Plug 'ntk148v/vim-horizon'
+
 
 call plug#end()

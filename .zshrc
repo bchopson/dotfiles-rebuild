@@ -68,6 +68,7 @@ eval "$(starship init zsh)"
 
 # direnv
 eval "$(direnv hook zsh)"
+alias dr="direnv reload"
 
 alias tl="tmuxp load"
 

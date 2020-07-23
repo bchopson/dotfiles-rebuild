@@ -193,6 +193,8 @@ let g:deoplete#enable_at_startup = 1
 let g:jedi#completions_enabled = 0
 let g:black_skip_string_normalization = 1
 let g:black_linelength = 100
+nnoremap <leader>fb :Black<CR>
+nnoremap <leader>sp :Isort<CR>
 
 " clear highlighting and redraw the screen
 nnoremap <silent> <leader>l :redraw!<CR>:nohl<CR><ESC>
@@ -273,11 +275,15 @@ set tags=tags;/
 nmap <silent> <leader>k <Plug>(ale_previous_wrap)
 nmap <silent> <leader>j <Plug>(ale_next_wrap)
 let g:ale_fixers = {
-\ 'javascript': ['prettier'],
-\ 'css': ['prettier'],
-\ 'html': ['prettier'],
-\}
+      \ 'typescript': ['prettier'],
+      \ 'tsx': ['prettier'],
+      \ 'jsx': ['prettier'],
+      \ 'javascript': ['prettier'],
+      \ 'css': ['prettier'],
+      \ 'html': ['prettier'],
+      \}
 let g:ale_fix_on_save = 1
+nnoremap <leader>gt :ALEGoToDefinition<CR>
 
 " Python
 nnoremap <silent> <leader>bp <Esc>oimport pdb; pdb.set_trace()<Esc>
@@ -321,11 +327,11 @@ end
 " colorscheme gruvbox
 
 " colorscheme space_vim_theme
-" highlight Comment cterm=italic gui=italic
 
-colorscheme spring-night
-let g:airline_theme = 'spring_night'
 set termguicolors
+colorscheme candid
+highlight Comment cterm=italic gui=italic
+let g:airline_theme = 'ayu'
 
 " load a personal vimrc if one exists
 let s:personalrc = expand($HOME . '/.personal.vimrc')
