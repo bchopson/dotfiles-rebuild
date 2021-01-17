@@ -24,6 +24,7 @@ silent! source $HOME/plugs.vim
 " turn on syntax highlighting
 let g:python_highlight_all=1
 syntax on
+let g:Hexokinase_highlighters = ['backgroundfull']
 
 " change to the correct indention and plugins dependent on the file type
 filetype on
@@ -173,6 +174,9 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
+" Undotree
+nnoremap <F5> :UndotreeToggle<cr>
+
 " set up quick searching ag/ack
 if executable('rg')
   set grepprg=rg\ --vimgrep
@@ -193,8 +197,32 @@ let g:deoplete#enable_at_startup = 1
 let g:jedi#completions_enabled = 0
 let g:black_skip_string_normalization = 1
 let g:black_linelength = 100
-nnoremap <leader>fb :Black<CR>
+nnoremap <leader>ff :Black<CR>
 nnoremap <leader>sp :Isort<CR>
+
+function! s:RunBlackMacchiato() range
+    let cmd = "black-macchiato"
+    if !executable(cmd)
+        echohl ErrorMsg
+        echom "black-macchiato not found!"
+        echohl None
+        return
+    endif
+
+    silent execute a:firstline . "," . a:lastline . "!" . cmd
+
+    echo "Done formatting."
+
+endfunction
+
+if !exists(':BlackMacchiato')
+  " Create a command to call the black-macchiato function
+  command -range BlackMacchiato <line1>,<line2>call <sid>RunBlackMacchiato()
+endif
+
+" Optionally add keyboard shortcuts to call the command in normal and visual modes
+autocmd FileType python xnoremap <buffer> <Leader>f :'<,'>BlackMacchiato<cr>
+autocmd FileType python nnoremap <buffer> <Leader>f :BlackMacchiato<cr>
 
 " clear highlighting and redraw the screen
 nnoremap <silent> <leader>l :redraw!<CR>:nohl<CR><ESC>
@@ -261,13 +289,22 @@ nnoremap <silent> <F10> :set cursorline!<CR>:set cursorcolumn!<CR>
 
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-b> :History<CR>
+nnoremap <C-c> :History:<CR>
 nnoremap <silent> <leader>fl :Lines<CR>
 nnoremap <silent> <leader>fr :Rg<CR>
 nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
 
+" JavaScript
+let g:javascript_plugin_jsdoc = 1
+
 " GitGutter Settings
 let g:gitgutter_map_keys = 0
 set updatetime=100
+
+" Blamer settings
+let g:blamer_delay = 500
+let g:blamer_date_format = '%Y-%m-%d'
+let g:blamer_show_in_visual_modes = 0
 
 set tags=tags;/
 
@@ -283,10 +320,12 @@ let g:ale_fixers = {
       \ 'html': ['prettier'],
       \}
 let g:ale_fix_on_save = 1
-nnoremap <leader>gt :ALEGoToDefinition<CR>
+" Copy mappings from vim-jedi for ALE
+nnoremap <leader>g :ALEGoToDefinition<CR>
+nnoremap <leader>n :ALEFindReferences<CR>
 
 " Python
-nnoremap <silent> <leader>bp <Esc>oimport pdb; pdb.set_trace()<Esc>
+nnoremap <silent> <leader>bp <Esc>obreakpoint()<Esc>
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 nmap <silent> <C-i> <Plug>(pydocstring)
 let g:pyindent_open_paren = 'shiftwidth()'
@@ -329,9 +368,9 @@ end
 " colorscheme space_vim_theme
 
 set termguicolors
-colorscheme candid
-highlight Comment cterm=italic gui=italic
-let g:airline_theme = 'ayu'
+colorscheme horizon
+" highlight Comment cterm=italic gui=italic
+let g:airline_theme = 'nisha'
 
 " load a personal vimrc if one exists
 let s:personalrc = expand($HOME . '/.personal.vimrc')

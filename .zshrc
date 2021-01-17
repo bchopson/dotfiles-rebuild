@@ -42,12 +42,18 @@ antigen bundle docker
 antigen bundle docker-compose
 
 alias fd=fdfind
+alias tdi="td --interactive"
+alias aerc="TERM=xterm-256color aerc"
+alias vg="nvim +GhostStart"
+alias gprv="gh pr view --web"
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 antigen apply
 
+# no_share_history is better for tmux
 setopt no_share_history
+setopt CORRECT
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 

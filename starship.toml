@@ -1,6 +1,7 @@
 [character]
-symbol = "π"
-vicmd_symbol = "v"
+success_symbol = "[π](bold green)"
+vicmd_symbol = "💚"
+error_symbol = "🔥"
 
 [directory]
 style = "bold blue"

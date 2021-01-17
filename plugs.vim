@@ -20,14 +20,12 @@ Plug 'raimon49/requirements.txt.vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
-" Neovim support removed in 2.0.0?
-" Plug 'heavenshell/vim-pydocstring'
 Plug 'fisadev/vim-isort'
 Plug 'mattn/emmet-vim'
-Plug 'elixir-editors/vim-elixir'
-Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'ianks/vim-tsx'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " For deoplete, vim only
@@ -43,7 +41,8 @@ Plug 'othree/html5.vim'
 Plug 'tpope/vim-haml'
 Plug 'mxw/vim-jsx'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'chrisbra/Colorizer'
+Plug 'ruanyl/vim-sort-imports'
+Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
 
 " vim helpers
 Plug 'ntpeters/vim-better-whitespace'
@@ -62,12 +61,15 @@ Plug 'PeterRincker/vim-argumentative'
 Plug 'farmergreg/vim-lastplace'
 Plug 'preservim/nerdtree'
 Plug 'lambdalisue/suda.vim'
+Plug 'jacquesbh/vim-showmarks'
+Plug 'mbbill/undotree'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " tpope
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -81,15 +83,12 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
-" Mostly :Verbose to view mappings
-Plug 'tpope/vim-scriptease'
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
 
 " GitHub
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 
 " quick searching
 if executable('rg')
@@ -98,20 +97,18 @@ endif
 Plug 'mileszs/ack.vim'
 
 " color themes
-Plug 'lifepillar/vim-colortemplate'
-Plug 'nanotech/jellybeans.vim'
 Plug 'tomasr/molokai'
 Plug 'joshdick/onedark.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
-Plug 'danilo-augusto/vim-afterglow'
-Plug 'fcpg/vim-farout'
 Plug 'liuchengxu/space-vim-theme'
-Plug 'aonemd/kuroi.vim'
 Plug 'flrnd/candid.vim'
-Plug 'Rigellute/shades-of-purple.vim'
 Plug 'ntk148v/vim-horizon'
-
+Plug 'heraldofsolace/nisha-vim'
+Plug 'axvr/photon.vim'
+Plug 'vigoux/oak'
+Plug 'senran101604/neotrix.vim'
+Plug 'eemed/sitruuna.vim'
 
 call plug#end()
