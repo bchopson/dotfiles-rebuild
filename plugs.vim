@@ -107,8 +107,7 @@ Plug 'flrnd/candid.vim'
 Plug 'ntk148v/vim-horizon'
 Plug 'heraldofsolace/nisha-vim'
 Plug 'axvr/photon.vim'
-Plug 'vigoux/oak'
-Plug 'senran101604/neotrix.vim'
-Plug 'eemed/sitruuna.vim'
+" Plug 'vigoux/oak'
+Plug 'yassinebridi/vim-purpura'
 
 call plug#end()

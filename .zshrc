@@ -4,6 +4,7 @@ export VISUAL=nvim
 export EDITOR=$VISUAL
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgreprc"
+export ZSH_TMUX_AUTOSTART=true
 # Up arrow history completion
 export DEBIAN_PREVENT_KEYBOARD_CHANGES=yes
 bindkey '^[[A' up-line-or-search
@@ -46,6 +47,7 @@ alias tdi="td --interactive"
 alias aerc="TERM=xterm-256color aerc"
 alias vg="nvim +GhostStart"
 alias gprv="gh pr view --web"
+alias pm="playerctl metadata"
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 

@@ -3,6 +3,9 @@ set nocompatible
 
 set nomodeline
 
+" enable project-specific vimrc
+set exrc
+
 " use ~/.vim for windows too
 if (has('win16') || has('win32') || has('win64'))
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after
@@ -32,7 +35,7 @@ filetype indent on
 filetype plugin on
 
 " unfold everything (looking at you rst)
-set foldlevel=99
+" set foldlevel=99
 
 " turn on line numbers
 set number
@@ -85,6 +88,7 @@ augroup file_specific_settings
   autocmd!
   autocmd FileType markdown setlocal spell
   autocmd FileType gitcommit setlocal spell
+  " autocmd FileType rst setlocal shiftwidth=3 tabstop=3
 augroup END
 
 " disable automatic commenting
@@ -296,15 +300,11 @@ nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
 
 " JavaScript
 let g:javascript_plugin_jsdoc = 1
+nnoremap <silent> <leader>fj :%!python -m json.tool<CR>
 
 " GitGutter Settings
 let g:gitgutter_map_keys = 0
 set updatetime=100
-
-" Blamer settings
-let g:blamer_delay = 500
-let g:blamer_date_format = '%Y-%m-%d'
-let g:blamer_show_in_visual_modes = 0
 
 set tags=tags;/
 
@@ -323,6 +323,7 @@ let g:ale_fix_on_save = 1
 " Copy mappings from vim-jedi for ALE
 nnoremap <leader>g :ALEGoToDefinition<CR>
 nnoremap <leader>n :ALEFindReferences<CR>
+let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 
 " Python
 nnoremap <silent> <leader>bp <Esc>obreakpoint()<Esc>
@@ -359,16 +360,12 @@ if &term == "screen"
   set t_Co=256
 end
 
-" let g:palenight_terminal_italics=1
-" colorscheme palenight
-
-" let g:gruvbox_italic=1
-" colorscheme gruvbox
-
-" colorscheme space_vim_theme
+let g:candid_color_store = {
+  \ "black": {"gui": "#20242c", "cterm256": "0"},
+  \}
 
 set termguicolors
-colorscheme horizon
+colorscheme candid
 " highlight Comment cterm=italic gui=italic
 let g:airline_theme = 'nisha'
 
@@ -377,3 +374,6 @@ let s:personalrc = expand($HOME . '/.personal.vimrc')
 if filereadable(s:personalrc)
   exec ':so ' . s:personalrc
 endif
+
+" prevent dangerous commands in project-specific vimrc
+set secure
