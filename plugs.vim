@@ -31,12 +31,18 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " For deoplete, vim only
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+" Clojure, 'cause I don't have emacs
+Plug 'Olical/conjure', {'tag': 'v4.19.0'}
+Plug 'guns/vim-clojure-static'
+Plug 'dmac/vim-cljfmt'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'junegunn/rainbow_parentheses.vim'
 
 " front end web development
 Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'elzr/vim-json'
-Plug 'burnettk/vim-angular'
 Plug 'othree/html5.vim'
 Plug 'tpope/vim-haml'
 Plug 'mxw/vim-jsx'
@@ -63,6 +69,7 @@ Plug 'preservim/nerdtree'
 Plug 'lambdalisue/suda.vim'
 Plug 'jacquesbh/vim-showmarks'
 Plug 'mbbill/undotree'
+Plug 'chrisbra/NrrwRgn'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -83,6 +90,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-sleuth'
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -96,6 +104,9 @@ if executable('rg')
 endif
 Plug 'mileszs/ack.vim'
 
+" color theme stuff
+Plug 'lifepillar/vim-colortemplate'
+
 " color themes
 Plug 'tomasr/molokai'
 Plug 'joshdick/onedark.vim'
@@ -107,7 +118,10 @@ Plug 'flrnd/candid.vim'
 Plug 'ntk148v/vim-horizon'
 Plug 'heraldofsolace/nisha-vim'
 Plug 'axvr/photon.vim'
-" Plug 'vigoux/oak'
+Plug 'vigoux/oak'
 Plug 'yassinebridi/vim-purpura'
+Plug 'cseelus/vim-colors-lucid'
+Plug 'wojciechkepka/bogster'
+Plug 'owozsh/amora'
 
 call plug#end()

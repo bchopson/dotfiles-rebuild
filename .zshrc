@@ -42,6 +42,13 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle docker
 antigen bundle docker-compose
 
+LIGHT_COLOR="gruvbox_light.yaml"
+DARK_COLOR="omni.yml"
+
+alias day="alacritty-colorscheme -V apply $LIGHT_COLOR"
+alias night="alacritty-colorscheme -V apply $DARK_COLOR"
+alias toggle="alacritty-colorscheme -V toggle $LIGHT_COLOR $DARK_COLOR"
+
 alias fd=fdfind
 alias tdi="td --interactive"
 alias aerc="TERM=xterm-256color aerc"
@@ -78,7 +85,7 @@ eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 alias dr="direnv reload"
 
-alias tl="tmuxp load"
+alias tl="tmuxp load -y"
 
 if [[ -a ~/.personal.after.rc ]]; then
   source ~/.personal.after.rc

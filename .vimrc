@@ -262,7 +262,7 @@ nnoremap <silent> <leader>Q :q!<CR>
 " fugitive shortcuts
 nnoremap <silent> <leader>gl :0Glog<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gb :Git blame<CR>
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gc :Gcommit -v<CR>
 nnoremap <silent> <leader>gr :Gread<CR>
@@ -334,6 +334,12 @@ let g:pyindent_open_paren = 'shiftwidth()'
 " Rust
 let g:rustfmt_autosave = 1
 
+" Clojure
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
+
 " use a dark background
 set background=dark
 
@@ -363,10 +369,12 @@ end
 let g:candid_color_store = {
   \ "black": {"gui": "#20242c", "cterm256": "0"},
   \}
+let g:gruvbox_contrast_light = "soft"
 
 set termguicolors
-colorscheme candid
+colorscheme horizon
 " highlight Comment cterm=italic gui=italic
+let g:airline_powerline_fonts = 1
 let g:airline_theme = 'nisha'
 
 " load a personal vimrc if one exists
