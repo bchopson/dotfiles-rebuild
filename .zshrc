@@ -1,4 +1,3 @@
-export TERM=xterm-256color-italic
 export NVM_LAZY_LOAD=true
 export VISUAL=nvim
 export EDITOR=$VISUAL
@@ -45,9 +44,9 @@ antigen bundle docker-compose
 LIGHT_COLOR="gruvbox_light.yaml"
 DARK_COLOR="omni.yml"
 
-alias day="alacritty-colorscheme -V apply $LIGHT_COLOR"
-alias night="alacritty-colorscheme -V apply $DARK_COLOR"
-alias toggle="alacritty-colorscheme -V toggle $LIGHT_COLOR $DARK_COLOR"
+alias day="alacritty-colorscheme apply $LIGHT_COLOR"
+alias night="alacritty-colorscheme apply $DARK_COLOR"
+alias toggle="alacritty-colorscheme toggle $LIGHT_COLOR $DARK_COLOR"
 
 alias fd=fdfind
 alias tdi="td --interactive"

@@ -27,6 +27,7 @@ Plug 'fisadev/vim-isort'
 Plug 'mattn/emmet-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'ianks/vim-tsx'
+Plug 'posva/vim-vue'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " For deoplete, vim only
 Plug 'roxma/nvim-yarp'
@@ -45,7 +46,7 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'elzr/vim-json'
 Plug 'othree/html5.vim'
 Plug 'tpope/vim-haml'
-Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'ruanyl/vim-sort-imports'
 Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
@@ -123,5 +124,6 @@ Plug 'yassinebridi/vim-purpura'
 Plug 'cseelus/vim-colors-lucid'
 Plug 'wojciechkepka/bogster'
 Plug 'owozsh/amora'
+Plug 'savq/melange'
 
 call plug#end()

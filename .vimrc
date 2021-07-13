@@ -88,6 +88,7 @@ augroup file_specific_settings
   autocmd!
   autocmd FileType markdown setlocal spell
   autocmd FileType gitcommit setlocal spell
+  autocmd BufNewFile,BufRead .sequelizerc set syntax=javascript
   " autocmd FileType rst setlocal shiftwidth=3 tabstop=3
 augroup END
 
@@ -234,9 +235,20 @@ nnoremap <silent> <leader>l :redraw!<CR>:nohl<CR><ESC>
 " faster mapping for omni-completion
 inoremap <silent> <S-Tab> <C-x><C-o>
 
+" quickly edit .vimrc
+nnoremap <silent> <leader>ev :e ~/.vimrc<CR>
+nnoremap <silent> <leader>ep  :e ~/.vim/etc/plugs.vim<CR>
+nnoremap <silent> <leader>esv :vsplit ~/.vimrc<CR>
+nnoremap <silent> <leader>esp :vsplit ~/.vim/etc/plugs.vim<CR>
+nnoremap <silent> <leader>sv  :so $MYVIMRC<CR>:nohl<CR>
+
 " quickly edit .zshrc
 nnoremap <silent> <leader>ez :e ~/.zshrc<CR>
-nnoremap <silent> <leader>ezv :vsplit<CR><C-w><C-w>:e ~/.zshrc<CR>
+nnoremap <silent> <leader>ezv :vsplit ~/.zshrc<CR>
+
+" quickly edit terminal config
+nnoremap <silent> <leader>em :e $HOME/.config/alacritty/alacritty.yml<CR>
+nnoremap <silent> <leader>emv :vsplit $HOME/.config/alacritty/alacritty.yml<CR>
 
 " quickly edit .tmux.conf
 
@@ -318,6 +330,7 @@ let g:ale_fixers = {
       \ 'javascript': ['prettier'],
       \ 'css': ['prettier'],
       \ 'html': ['prettier'],
+      \ 'vue': ['prettier'],
       \}
 let g:ale_fix_on_save = 1
 " Copy mappings from vim-jedi for ALE
@@ -360,11 +373,6 @@ if has('gui_running')
   " default to line and column highlighting
   set cursorline cursorcolumn
 endif
-
-" if tmux or screen is being used, default to 256 colors
-if &term == "screen"
-  set t_Co=256
-end
 
 let g:candid_color_store = {
   \ "black": {"gui": "#20242c", "cterm256": "0"},
