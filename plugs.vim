@@ -9,29 +9,18 @@ call plug#begin($HOME . '/.vim/plugged')
 Plug 'editorconfig/editorconfig-vim'
 
 " language plugins
-Plug 'rodjek/vim-puppet'
-Plug 'tpope/vim-markdown'
-Plug 'moll/vim-node'
-Plug 'glench/vim-jinja2-syntax'
-Plug 'vim-python/python-syntax'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'psf/black', { 'commit': 'ce14fa8b497bae2b50ec48b3bd7022573a59cdb1' }
-Plug 'zah/nim.vim'
-Plug 'raimon49/requirements.txt.vim'
-Plug 'davidhalter/jedi-vim'
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'cespare/vim-toml'
-Plug 'rust-lang/rust.vim'
+" Plug 'davidhalter/jedi-vim'
+" Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'racer-rust/vim-racer'
 Plug 'fisadev/vim-isort'
 Plug 'mattn/emmet-vim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'ianks/vim-tsx'
-Plug 'posva/vim-vue'
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'hrsh7th/nvim-compe'
+" Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " For deoplete, vim only
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
 " Clojure, 'cause I don't have emacs
 Plug 'Olical/conjure', {'tag': 'v4.19.0'}
 Plug 'guns/vim-clojure-static'
@@ -41,19 +30,14 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'junegunn/rainbow_parentheses.vim'
 
 " front end web development
-Plug 'pangloss/vim-javascript'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'elzr/vim-json'
-Plug 'othree/html5.vim'
-Plug 'tpope/vim-haml'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'ruanyl/vim-sort-imports'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
 
 " vim helpers
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'dense-analysis/ale'
+Plug 'neovim/nvim-lspconfig'
+" Plug 'dense-analysis/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
@@ -66,7 +50,7 @@ Plug 'mtth/scratch.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'farmergreg/vim-lastplace'
-Plug 'preservim/nerdtree'
+Plug 'francoiscabrol/ranger.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'jacquesbh/vim-showmarks'
 Plug 'mbbill/undotree'
@@ -75,6 +59,10 @@ Plug 'chrisbra/NrrwRgn'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+Plug 'kyazdani42/nvim-web-devicons'
+
+Plug 'mhinz/vim-startify'
+
 " tpope
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-capslock'
@@ -82,7 +70,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
@@ -91,7 +79,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-sleuth'
 
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -125,5 +112,6 @@ Plug 'cseelus/vim-colors-lucid'
 Plug 'wojciechkepka/bogster'
 Plug 'owozsh/amora'
 Plug 'savq/melange'
+Plug 'shaunsingh/moonlight.nvim', {'branch': 'pure-lua'}
 
 call plug#end()

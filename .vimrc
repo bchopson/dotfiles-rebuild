@@ -195,11 +195,83 @@ endif
 cnoreabbrev Ack Ack!
 nnoremap <leader>a :Ack!<space>
 
-" deoplete
+" lsp
+lua <<EOF
+local nvim_lsp = require('lspconfig')
+
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  local opts = { noremap=true, silent=true }
+
+  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gt', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+end
+
+local_servers = { "jedi_language_server", "tsserver" }
+for _, lsp in ipairs(local_servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
+EOF
+
 let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
-let g:deoplete#enable_at_startup = 1
-let g:jedi#completions_enabled = 0
+
+" deoplete
+" let g:deoplete#enable_at_startup = 1
+" let g:jedi#completions_enabled = 0
+
+" nvim-compe
+set completeopt=menuone,noselect
+
+
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.resolve_timeout = 800
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:true
+let g:compe.source.ultisnips = v:true
+let g:compe.source.luasnip = v:true
+let g:compe.source.emoji = v:true
+
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
 let g:black_skip_string_normalization = 1
 let g:black_linelength = 100
 nnoremap <leader>ff :Black<CR>
@@ -232,9 +304,6 @@ autocmd FileType python nnoremap <buffer> <Leader>f :BlackMacchiato<cr>
 " clear highlighting and redraw the screen
 nnoremap <silent> <leader>l :redraw!<CR>:nohl<CR><ESC>
 
-" faster mapping for omni-completion
-inoremap <silent> <S-Tab> <C-x><C-o>
-
 " quickly edit .vimrc
 nnoremap <silent> <leader>ev :e ~/.vimrc<CR>
 nnoremap <silent> <leader>ep  :e ~/.vim/etc/plugs.vim<CR>
@@ -248,7 +317,7 @@ nnoremap <silent> <leader>ezv :vsplit ~/.zshrc<CR>
 
 " quickly edit terminal config
 nnoremap <silent> <leader>em :e $HOME/.config/alacritty/alacritty.yml<CR>
-nnoremap <silent> <leader>emv :vsplit $HOME/.config/alacritty/alacritty.yml<CR>
+nnoremap <silent> <leader>esm :vsplit $HOME/.config/alacritty/alacritty.yml<CR>
 
 " quickly edit .tmux.conf
 
@@ -308,7 +377,8 @@ nnoremap <C-b> :History<CR>
 nnoremap <C-c> :History:<CR>
 nnoremap <silent> <leader>fl :Lines<CR>
 nnoremap <silent> <leader>fr :Rg<CR>
-nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
+let g:ranger_map_keys = 0
+nnoremap <silent> <leader>nt :Ranger<CR>
 
 " JavaScript
 let g:javascript_plugin_jsdoc = 1
@@ -320,23 +390,23 @@ set updatetime=100
 
 set tags=tags;/
 
-" ALE settings
-nmap <silent> <leader>k <Plug>(ale_previous_wrap)
-nmap <silent> <leader>j <Plug>(ale_next_wrap)
-let g:ale_fixers = {
-      \ 'typescript': ['prettier'],
-      \ 'tsx': ['prettier'],
-      \ 'jsx': ['prettier'],
-      \ 'javascript': ['prettier'],
-      \ 'css': ['prettier'],
-      \ 'html': ['prettier'],
-      \ 'vue': ['prettier'],
-      \}
-let g:ale_fix_on_save = 1
+" " ALE settings
+" nmap <silent> <leader>k <Plug>(ale_previous_wrap)
+" nmap <silent> <leader>j <Plug>(ale_next_wrap)
+" let g:ale_fixers = {
+"       \ 'typescript': ['prettier'],
+"       \ 'tsx': ['prettier'],
+"       \ 'jsx': ['prettier'],
+"       \ 'javascript': ['prettier'],
+"       \ 'css': ['prettier'],
+"       \ 'html': ['prettier'],
+"       \ 'vue': ['prettier'],
+"       \}
+" let g:ale_fix_on_save = 1
 " Copy mappings from vim-jedi for ALE
-nnoremap <leader>g :ALEGoToDefinition<CR>
-nnoremap <leader>n :ALEFindReferences<CR>
-let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
+" nnoremap <leader>g :ALEGoToDefinition<CR>
+" nnoremap <leader>n :ALEFindReferences<CR>
+" let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
 
 " Python
 nnoremap <silent> <leader>bp <Esc>obreakpoint()<Esc>
@@ -356,6 +426,10 @@ augroup END
 " use a dark background
 set background=dark
 
+" startify
+let g:startify_fortune_use_unicode = 1
+let g:startify_custom_header = startify#fortune#boxed()
+
 " make the GUI nice
 if has('gui_running')
   " turn off the menu, tool, and scroll bar
@@ -374,16 +448,31 @@ if has('gui_running')
   set cursorline cursorcolumn
 endif
 
+" treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = true,
+  },
+}
+EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldlevelstart=99
+
 let g:candid_color_store = {
   \ "black": {"gui": "#20242c", "cterm256": "0"},
   \}
 let g:gruvbox_contrast_light = "soft"
 
 set termguicolors
-colorscheme horizon
-" highlight Comment cterm=italic gui=italic
+" load palenight so I can use palenight airline theme
+colorscheme palenight
+colorscheme moonlight
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'nisha'
+let g:airline_theme = 'palenight'
 
 " load a personal vimrc if one exists
 let s:personalrc = expand($HOME . '/.personal.vimrc')
