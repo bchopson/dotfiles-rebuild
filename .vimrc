@@ -195,6 +195,9 @@ endif
 cnoreabbrev Ack Ack!
 nnoremap <leader>a :Ack!<space>
 
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
+
 " lsp
 lua <<EOF
 local nvim_lsp = require('lspconfig')
@@ -211,14 +214,71 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gt', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap("n", "<leader>sp", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
-local_servers = { "jedi_language_server", "tsserver" }
+local filetypes = {
+    typescript = "eslint",
+    typescriptreact = "eslint",
+    javascript = "eslint",
+}
+
+local linters = {
+    eslint = {
+        sourceName = "eslint",
+        command = "eslint_d",
+        rootPatterns = {".eslintrc.js", "package.json"},
+        debounce = 100,
+        args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
+        parseJson = {
+            errorsRoot = "[0].messages",
+            line = "line",
+            column = "column",
+            endLine = "endLine",
+            endColumn = "endColumn",
+            message = "${message} [${ruleId}]",
+            security = "severity"
+        },
+        securities = {[2] = "error", [1] = "warning"}
+    }
+}
+
+nvim_lsp.diagnosticls.setup {
+    on_attach = on_attach,
+    filetypes = vim.tbl_keys(filetypes),
+    init_options = {
+        filetypes = filetypes,
+        linters = linters,
+    }
+}
+
+nvim_lsp.pylsp.setup {
+  on_attach = on_attach,
+  settings = {
+    pylsp = {
+      configurationSources = {'flake8'},
+      plugins = {
+        pycodestyle = {enabled = false},
+        flake8 = {enabled = true},
+        isort = {enabled = true}
+        -- jedi = {enabled = true},
+        -- jedi_completions = {enabled = true},
+        -- jedi_definition = {enabled = true},
+        -- jedi_hover = {enabled = true},
+        -- jedi_references = {enabled = true},
+        -- jedi_signature_help = {enabled = true},
+        -- jedi_symbols = {enabled = true},
+      }
+    }
+  }
+}
+
+local_servers = { 'pyright', 'tsserver', 'nimls' }
 for _, lsp in ipairs(local_servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -229,15 +289,12 @@ for _, lsp in ipairs(local_servers) do
 end
 EOF
 
-let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/bin/python3'
-
 " deoplete
 " let g:deoplete#enable_at_startup = 1
 " let g:jedi#completions_enabled = 0
 
 " nvim-compe
-set completeopt=menuone,noselect
+set completeopt=menuone
 
 
 let g:compe = {}
@@ -261,9 +318,9 @@ let g:compe.source.buffer = v:true
 let g:compe.source.calc = v:true
 let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:true
-let g:compe.source.ultisnips = v:true
-let g:compe.source.luasnip = v:true
+" let g:compe.source.vsnip = v:true
+" let g:compe.source.ultisnips = v:true
+" let g:compe.source.luasnip = v:true
 let g:compe.source.emoji = v:true
 
 inoremap <silent><expr> <C-Space> compe#complete()
@@ -275,7 +332,6 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 let g:black_skip_string_normalization = 1
 let g:black_linelength = 100
 nnoremap <leader>ff :Black<CR>
-nnoremap <leader>sp :Isort<CR>
 
 function! s:RunBlackMacchiato() range
     let cmd = "black-macchiato"
@@ -306,9 +362,9 @@ nnoremap <silent> <leader>l :redraw!<CR>:nohl<CR><ESC>
 
 " quickly edit .vimrc
 nnoremap <silent> <leader>ev :e ~/.vimrc<CR>
-nnoremap <silent> <leader>ep  :e ~/.vim/etc/plugs.vim<CR>
+nnoremap <silent> <leader>ep  :e ~/plugs.vim<CR>
 nnoremap <silent> <leader>esv :vsplit ~/.vimrc<CR>
-nnoremap <silent> <leader>esp :vsplit ~/.vim/etc/plugs.vim<CR>
+nnoremap <silent> <leader>esp :vsplit ~/plugs.vim<CR>
 nnoremap <silent> <leader>sv  :so $MYVIMRC<CR>:nohl<CR>
 
 " quickly edit .zshrc
@@ -429,6 +485,8 @@ set background=dark
 " startify
 let g:startify_fortune_use_unicode = 1
 let g:startify_custom_header = startify#fortune#boxed()
+let g:startify_change_to_dir = 0
+let g:startify_bookmarks = [{'v': '~/.vimrc'}, {'z': '~/.zshrc'}, {'p': '~/plugs.vim'}, {'m': '~/.config/alacritty/alacritty.yml'}]
 
 " make the GUI nice
 if has('gui_running')
@@ -460,7 +518,7 @@ require'nvim-treesitter.configs'.setup {
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-set foldlevelstart=99
+set nofoldenable
 
 let g:candid_color_store = {
   \ "black": {"gui": "#20242c", "cterm256": "0"},

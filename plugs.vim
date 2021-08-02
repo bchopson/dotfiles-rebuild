@@ -10,11 +10,13 @@ Plug 'editorconfig/editorconfig-vim'
 
 " language plugins
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'simrat39/symbols-outline.nvim'
 Plug 'psf/black', { 'commit': 'ce14fa8b497bae2b50ec48b3bd7022573a59cdb1' }
+Plug 'zah/nim.vim'
 " Plug 'davidhalter/jedi-vim'
 " Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'racer-rust/vim-racer'
-Plug 'fisadev/vim-isort'
 Plug 'mattn/emmet-vim'
 Plug 'hrsh7th/nvim-compe'
 " Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
@@ -93,7 +95,7 @@ endif
 Plug 'mileszs/ack.vim'
 
 " color theme stuff
-Plug 'lifepillar/vim-colortemplate'
+Plug 'rktjmp/lush.nvim', {'branch': 'main'}
 
 " color themes
 Plug 'tomasr/molokai'
