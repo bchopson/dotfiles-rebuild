@@ -14,6 +14,7 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'simrat39/symbols-outline.nvim'
 Plug 'psf/black', { 'commit': 'ce14fa8b497bae2b50ec48b3bd7022573a59cdb1' }
 Plug 'zah/nim.vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
 " Plug 'davidhalter/jedi-vim'
 " Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'racer-rust/vim-racer'

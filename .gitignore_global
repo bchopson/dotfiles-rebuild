@@ -1,0 +1,13 @@
+.ctags
+.ctags.d/*
+tags
+tags.lock
+tags.temp
+.ignore
+.envrc
+.python-version
+.direnv
+.nvmrc
+*.bak
+.junk-drawer/
+Session.vim
