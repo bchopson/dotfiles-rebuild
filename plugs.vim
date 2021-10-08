@@ -113,7 +113,7 @@ Plug 'vigoux/oak'
 Plug 'yassinebridi/vim-purpura'
 Plug 'cseelus/vim-colors-lucid'
 Plug 'wojciechkepka/bogster'
-Plug 'owozsh/amora'
+Plug 'owozsh/amora', {'branch': 'main'}
 Plug 'savq/melange'
 Plug 'shaunsingh/moonlight.nvim', {'branch': 'pure-lua'}
 

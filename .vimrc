@@ -6,6 +6,8 @@ set nomodeline
 " enable project-specific vimrc
 set exrc
 
+set undofile
+
 " use ~/.vim for windows too
 if (has('win16') || has('win32') || has('win64'))
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after
@@ -232,7 +234,7 @@ local linters = {
     eslint = {
         sourceName = "eslint",
         command = "eslint_d",
-        rootPatterns = {".eslintrc.js", "package.json"},
+        rootPatterns = {".eslintrc.js", ".eslintrc.json", "package.json"},
         debounce = 100,
         args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
         parseJson = {
@@ -266,13 +268,6 @@ nvim_lsp.pylsp.setup {
         pycodestyle = {enabled = false},
         flake8 = {enabled = true},
         isort = {enabled = true}
-        -- jedi = {enabled = true},
-        -- jedi_completions = {enabled = true},
-        -- jedi_definition = {enabled = true},
-        -- jedi_hover = {enabled = true},
-        -- jedi_references = {enabled = true},
-        -- jedi_signature_help = {enabled = true},
-        -- jedi_symbols = {enabled = true},
       }
     }
   }
@@ -331,7 +326,6 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 let g:black_skip_string_normalization = 1
 let g:black_linelength = 100
-nnoremap <leader>ff :Black<CR>
 
 function! s:RunBlackMacchiato() range
     let cmd = "black-macchiato"
@@ -354,8 +348,8 @@ if !exists(':BlackMacchiato')
 endif
 
 " Optionally add keyboard shortcuts to call the command in normal and visual modes
-autocmd FileType python xnoremap <buffer> <Leader>f :'<,'>BlackMacchiato<cr>
-autocmd FileType python nnoremap <buffer> <Leader>f :BlackMacchiato<cr>
+autocmd FileType python xnoremap <buffer> <Leader>ff :'<,'>BlackMacchiato<cr>
+autocmd FileType python nnoremap <buffer> <Leader>ff :BlackMacchiato<cr>
 
 " clear highlighting and redraw the screen
 nnoremap <silent> <leader>l :redraw!<CR>:nohl<CR><ESC>
@@ -446,24 +440,6 @@ set updatetime=100
 
 set tags=tags;/
 
-" " ALE settings
-" nmap <silent> <leader>k <Plug>(ale_previous_wrap)
-" nmap <silent> <leader>j <Plug>(ale_next_wrap)
-" let g:ale_fixers = {
-"       \ 'typescript': ['prettier'],
-"       \ 'tsx': ['prettier'],
-"       \ 'jsx': ['prettier'],
-"       \ 'javascript': ['prettier'],
-"       \ 'css': ['prettier'],
-"       \ 'html': ['prettier'],
-"       \ 'vue': ['prettier'],
-"       \}
-" let g:ale_fix_on_save = 1
-" Copy mappings from vim-jedi for ALE
-" nnoremap <leader>g :ALEGoToDefinition<CR>
-" nnoremap <leader>n :ALEFindReferences<CR>
-" let g:ale_echo_msg_format='[%linter%] %s [%severity%]'
-
 " Python
 nnoremap <silent> <leader>bp <Esc>obreakpoint()<Esc>
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
@@ -519,6 +495,12 @@ EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
+
+let g:user_emmet_settings = {
+\ 'typescript': {
+\   'extends': 'jsx',
+\ }
+\}
 
 let g:candid_color_store = {
   \ "black": {"gui": "#20242c", "cterm256": "0"},
