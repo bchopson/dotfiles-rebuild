@@ -40,7 +40,7 @@ antigen bundle docker
 antigen bundle docker-compose
 
 LIGHT_COLOR="gruvbox_light.yaml"
-DARK_COLOR="omni.yml"
+DARK_COLOR="oak.yml"
 
 alias day="alacritty-colorscheme apply $LIGHT_COLOR"
 alias night="alacritty-colorscheme apply $DARK_COLOR"
@@ -88,10 +88,13 @@ if [[ -a ~/.personal.after.rc ]]; then
   source ~/.personal.after.rc
 fi
 
+# setup funky
+command -v funky &>/dev/null && eval "$(funky --init zsh)"
 
 # fnm
 export PATH=/home/ben/.fnm:$PATH
 eval "`fnm env`"
 
-# setup funky
-command -v funky &>/dev/null && eval "$(funky --init zsh)"
+# Terraform
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform

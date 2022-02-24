@@ -12,14 +12,19 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'simrat39/symbols-outline.nvim'
-Plug 'psf/black'
+Plug 'stevearc/aerial.nvim'
+Plug 'psf/black', {'tag': '21.12b0'}
 Plug 'zah/nim.vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'racer-rust/vim-racer'
+Plug 'kchmck/vim-coffee-script'
+Plug 'raimon49/requirements.txt.vim'
 Plug 'mattn/emmet-vim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'mfussenegger/nvim-dap'
+
 " Clojure, 'cause I don't have emacs
 Plug 'Olical/conjure', {'tag': 'v4.19.0'}
 Plug 'guns/vim-clojure-static'
@@ -58,7 +63,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'folke/trouble.nvim'
+Plug 'folke/trouble.nvim', {'branch': 'main'}
 
 Plug 'mhinz/vim-startify'
 
@@ -69,7 +74,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
-" Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-vinegar'
@@ -108,9 +112,10 @@ Plug 'axvr/photon.vim'
 Plug 'bchopson/oak'
 Plug 'yassinebridi/vim-purpura'
 Plug 'cseelus/vim-colors-lucid'
-Plug 'wojciechkepka/bogster'
+Plug 'vv9k/bogster'
 Plug 'owozsh/amora', {'branch': 'main'}
 Plug 'savq/melange'
 Plug 'shaunsingh/moonlight.nvim', {'branch': 'pure-lua'}
+Plug 'rockerBOO/boo-colorscheme-nvim', {'branch': 'main'}
 
 call plug#end()

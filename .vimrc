@@ -3,9 +3,6 @@ set nocompatible
 
 set nomodeline
 
-" enable project-specific vimrc
-set exrc
-
 set undofile
 
 " use ~/.vim for windows too
@@ -86,10 +83,12 @@ set wildmode=longest,list:longest
 set tags+=./.git/tags
 
 " set up file specific settings
+let g:EditorConfig_preserve_formatoptions = 1
 augroup file_specific_settings
   autocmd!
   autocmd FileType markdown setlocal spell
   autocmd FileType gitcommit setlocal spell
+  autocmd FileType python setlocal formatoptions-=t
   autocmd BufNewFile,BufRead .sequelizerc set syntax=javascript
   " autocmd FileType rst setlocal shiftwidth=3 tabstop=3
 augroup END
@@ -181,8 +180,8 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
-" Undotree
-nnoremap <F5> :UndotreeToggle<cr>
+" Code outline
+nnoremap <F5> :AerialToggle<cr>
 
 " set up quick searching ag/ack
 if executable('rg')
@@ -203,6 +202,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 " lsp
 lua <<EOF
 local nvim_lsp = require('lspconfig')
+local aerial = require('aerial')
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -218,10 +218,11 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap("n", "<leader>sp", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  aerial.on_attach(client, bufnr)
 end
 
 local filetypes = {
@@ -395,11 +396,11 @@ nnoremap <silent> <leader>q :q<CR>
 nnoremap <silent> <leader>Q :q!<CR>
 
 " fugitive shortcuts
-nnoremap <silent> <leader>gl :0Glog<CR>
+nnoremap <silent> <leader>gl :0Gclog<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gb :Git blame<CR>
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gc :Gcommit -v<CR>
+nnoremap <silent> <leader>gs :G status<CR>
+nnoremap <silent> <leader>gc :G commit -v<CR>
 nnoremap <silent> <leader>gr :Gread<CR>
 
 " gitgutter shortcuts
@@ -446,8 +447,7 @@ set tags=tags;/
 
 " Python
 nnoremap <silent> <leader>bp <Esc>obreakpoint()<Esc>
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-nmap <silent> <C-i> <Plug>(pydocstring)
+" autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 let g:pyindent_open_paren = 'shiftwidth()'
 
 " Rust
@@ -512,7 +512,6 @@ let g:candid_color_store = {
 let g:gruvbox_contrast_light = "soft"
 
 set termguicolors
-" load palenight so I can use palenight airline theme
 colorscheme oak
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'nisha'
