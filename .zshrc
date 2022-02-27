@@ -1,4 +1,3 @@
-export NVM_LAZY_LOAD=true
 export VISUAL=nvim
 export EDITOR=$VISUAL
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
@@ -35,7 +34,6 @@ antigen bundle command-not-found
 antigen bundle tmux
 antigen bundle ssh-agent
 antigen bundle vi-mode
-antigen bundle lukechilds/zsh-nvm
 antigen bundle fzf
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle docker
@@ -90,3 +88,10 @@ if [[ -a ~/.personal.after.rc ]]; then
   source ~/.personal.after.rc
 fi
 
+
+# fnm
+export PATH=/home/ben/.fnm:$PATH
+eval "`fnm env`"
+
+# setup funky
+command -v funky &>/dev/null && eval "$(funky --init zsh)"

@@ -273,6 +273,12 @@ nvim_lsp.pylsp.setup {
   }
 }
 
+require('rust-tools').setup({
+  server = {
+    on_attach = on_attach,
+  }
+})
+
 local_servers = { 'pyright', 'tsserver', 'nimls' }
 for _, lsp in ipairs(local_servers) do
   nvim_lsp[lsp].setup {
@@ -282,11 +288,9 @@ for _, lsp in ipairs(local_servers) do
     }
   }
 end
-EOF
 
-" deoplete
-" let g:deoplete#enable_at_startup = 1
-" let g:jedi#completions_enabled = 0
+require("trouble").setup {}
+EOF
 
 " nvim-compe
 set completeopt=menuone
@@ -509,10 +513,9 @@ let g:gruvbox_contrast_light = "soft"
 
 set termguicolors
 " load palenight so I can use palenight airline theme
-colorscheme palenight
-colorscheme moonlight
+colorscheme oak
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'palenight'
+let g:airline_theme = 'nisha'
 
 " load a personal vimrc if one exists
 let s:personalrc = expand($HOME . '/.personal.vimrc')
