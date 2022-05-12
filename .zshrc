@@ -52,6 +52,7 @@ alias aerc="TERM=xterm-256color aerc"
 alias vg="nvim +GhostStart"
 alias gprv="gh pr view --web"
 alias pm="playerctl metadata"
+alias wttr="curl wttr.in"
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
@@ -65,13 +66,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
-# TODO: remove virtualenvwrapper settings after direnv migration finished
-export WORKON_HOME="$HOME/.local/share/virtualenvs"
-alias pyv="pyenv virtualenvwrapper"
-function wk() { pyenv virtualenvwrapper && workon $(basename $(pwd)) }
-
-# weather
-alias wttr="curl wttr.in"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

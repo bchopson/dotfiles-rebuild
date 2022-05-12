@@ -87,7 +87,7 @@ Plug 'tpope/vim-speeddating'
 Plug 'christoomey/vim-tmux-navigator'
 
 " GitHub
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+Plug 'glacambre/firenvim', {'do': {_ -> firenvim#install(0)}}
 
 " quick searching
 if executable('rg')

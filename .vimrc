@@ -5,6 +5,8 @@ set nomodeline
 
 set undofile
 
+set mouse=a
+
 " use ~/.vim for windows too
 if (has('win16') || has('win32') || has('win64'))
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after
@@ -219,8 +221,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap("n", "<leader>sp", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   aerial.on_attach(client, bufnr)
 end
@@ -268,7 +270,8 @@ nvim_lsp.pylsp.setup {
       plugins = {
         pycodestyle = {enabled = false},
         flake8 = {enabled = true},
-        isort = {enabled = true}
+        isort = {enabled = true},
+        jedi_references = {enabled = false},
       }
     }
   }
@@ -290,7 +293,9 @@ for _, lsp in ipairs(local_servers) do
   }
 end
 
-require("trouble").setup {}
+require("trouble").setup {
+  mode = "document_diagnostics"
+}
 EOF
 
 " nvim-compe
@@ -489,7 +494,38 @@ endif
 " treesitter
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = {
+    'bash',
+    'c',
+    'clojure',
+    'cmake',
+    'comment',
+    'cpp',
+    'css',
+    'dockerfile',
+    'go',
+    'html',
+    'javascript',
+    'jsdoc',
+    'json',
+    'json5',
+    'latex',
+    'lua',
+    'make',
+    'prisma',
+    'python',
+    'regex',
+    'rst',
+    'rust',
+    'scss',
+    'toml',
+    'tsx',
+    'typescript',
+    'vim',
+    'vue',
+    'yaml',
+    'zig',
+  },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true,
