@@ -5,6 +5,7 @@ tags.lock
 tags.temp
 .ignore
 .envrc
+.funky
 .python-version
 .direnv
 .nvmrc
