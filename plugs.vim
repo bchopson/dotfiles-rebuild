@@ -110,12 +110,12 @@ Plug 'ntk148v/vim-horizon'
 Plug 'heraldofsolace/nisha-vim'
 Plug 'axvr/photon.vim'
 Plug 'bchopson/oak'
-Plug 'yassinebridi/vim-purpura'
 Plug 'cseelus/vim-colors-lucid'
 Plug 'vv9k/bogster'
-Plug 'owozsh/amora', {'branch': 'main'}
 Plug 'savq/melange'
 Plug 'shaunsingh/moonlight.nvim', {'branch': 'pure-lua'}
 Plug 'rockerBOO/boo-colorscheme-nvim', {'branch': 'main'}
+Plug 'rebelot/kanagawa.nvim'
+Plug 'EdenEast/nightfox.nvim'
 
 call plug#end()
