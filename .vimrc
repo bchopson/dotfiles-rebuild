@@ -227,6 +227,36 @@ local on_attach = function(client, bufnr)
   aerial.on_attach(client, bufnr)
 end
 
+-- completions
+local cmp = require('cmp')
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+  }, {
+    { name = 'buffer' },
+  })
+})
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 local filetypes = {
     typescript = "eslint",
     typescriptreact = "eslint",
@@ -256,6 +286,7 @@ local linters = {
 nvim_lsp.diagnosticls.setup {
     on_attach = on_attach,
     filetypes = vim.tbl_keys(filetypes),
+    capabilities = capabilities,
     init_options = {
         filetypes = filetypes,
         linters = linters,
@@ -264,6 +295,7 @@ nvim_lsp.diagnosticls.setup {
 
 nvim_lsp.pylsp.setup {
   on_attach = on_attach,
+  capabilities = capabilities,
   settings = {
     pylsp = {
       configurationSources = {'flake8'},
@@ -280,13 +312,15 @@ nvim_lsp.pylsp.setup {
 require('rust-tools').setup({
   server = {
     on_attach = on_attach,
-  }
+  },
+  capabilities = capabilities,
 })
 
 local_servers = { 'pyright', 'tsserver', 'nimls' }
 for _, lsp in ipairs(local_servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
     }
@@ -298,41 +332,8 @@ require("trouble").setup {
 }
 EOF
 
-" nvim-compe
-set completeopt=menuone
-
-
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.resolve_timeout = 800
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
-
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-" let g:compe.source.vsnip = v:true
-" let g:compe.source.ultisnips = v:true
-" let g:compe.source.luasnip = v:true
-let g:compe.source.emoji = v:true
-
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+" nvim-cmp
+set completeopt=menu,menuone
 
 let g:black_skip_string_normalization = 1
 let g:black_linelength = 100

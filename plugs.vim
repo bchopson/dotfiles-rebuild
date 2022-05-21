@@ -20,10 +20,20 @@ Plug 'racer-rust/vim-racer'
 Plug 'kchmck/vim-coffee-script'
 Plug 'raimon49/requirements.txt.vim'
 Plug 'mattn/emmet-vim'
-Plug 'hrsh7th/nvim-compe'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'mfussenegger/nvim-dap'
+
+" Completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+" For vsnip users.
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 " Clojure, 'cause I don't have emacs
 Plug 'Olical/conjure', {'tag': 'v4.19.0'}
