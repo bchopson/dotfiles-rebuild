@@ -35,9 +35,6 @@ filetype on
 filetype indent on
 filetype plugin on
 
-" unfold everything (looking at you rst)
-" set foldlevel=99
-
 " turn on line numbers
 set number
 
@@ -166,6 +163,15 @@ nmap <silent> <leader>ea <Plug>(EasyAlign)
 " open this file's directory using netrw in a split.
 nnoremap <silent> <C-n> :vsplit<CR><C-W><C-W>:edit %:p:h<CR>
 
+" firenvim settings
+if exists('g:started_by_firenvim')
+  tmap <D-v> <C-w>"+
+  nnoremap <D-v> "+p
+  vnoremap <D-v> "+p
+  inoremap <D-v> <C-R><C-O>+
+  cnoremap <D-v> <C-R><C-O>+
+endif
+
 " Incremental search settings
 let g:incsearch#auto_nohlsearch = 1
 let g:incsearch#consistent_n_direction = 1
@@ -250,6 +256,9 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'cmdline' },
+    { name = 'emoji' },
   }, {
     { name = 'buffer' },
   })
