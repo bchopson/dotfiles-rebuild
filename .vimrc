@@ -163,6 +163,10 @@ nmap <silent> <leader>ea <Plug>(EasyAlign)
 " open this file's directory using netrw in a split.
 nnoremap <silent> <C-n> :vsplit<CR><C-W><C-W>:edit %:p:h<CR>
 
+" Hop
+nnoremap <silent> <leader><leader>w :HopWord<CR>
+nnoremap <silent> <leader><leader>f :HopChar1<CR>
+
 " firenvim settings
 if exists('g:started_by_firenvim')
   tmap <D-v> <C-w>"+
@@ -211,6 +215,14 @@ let g:python3_host_prog = '/usr/bin/python3'
 lua <<EOF
 local nvim_lsp = require('lspconfig')
 local aerial = require('aerial')
+aerial.setup({})
+require('gitsigns').setup({})
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for kind, sign in pairs(signs) do
+  local name = 'DiagnosticSign' .. kind
+  vim.fn.sign_define(name, { texthl = name, text = sign, numhl = name })
+end
+
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -339,6 +351,8 @@ end
 require("trouble").setup {
   mode = "document_diagnostics"
 }
+
+require("hop").setup()
 EOF
 
 " nvim-cmp
@@ -436,8 +450,8 @@ nnoremap <silent> <leader>gc :G commit -v<CR>
 nnoremap <silent> <leader>gr :Gread<CR>
 
 " gitgutter shortcuts
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
+nmap ]h :Gitsigns next_hunk<CR>
+nmap [h :Gitsigns prev_hunk<CR>
 
 " map Y to yank until EOL
 nnoremap Y y$

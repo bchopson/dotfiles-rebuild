@@ -53,8 +53,8 @@ Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
 " vim helpers
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'neovim/nvim-lspconfig'
-Plug 'easymotion/vim-easymotion'
-Plug 'airblade/vim-gitgutter'
+Plug 'phaazon/hop.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'bling/vim-airline'
 Plug 'honza/vim-snippets'
 Plug 'Raimondi/delimitMate'
