@@ -65,11 +65,10 @@ Plug 'mtth/scratch.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'farmergreg/vim-lastplace'
-Plug 'francoiscabrol/ranger.vim'
+Plug 'mcchrish/nnn.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'jacquesbh/vim-showmarks'
 Plug 'mbbill/undotree'
-Plug 'chrisbra/NrrwRgn'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'

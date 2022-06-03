@@ -163,9 +163,15 @@ nmap <silent> <leader>ea <Plug>(EasyAlign)
 " open this file's directory using netrw in a split.
 nnoremap <silent> <C-n> :vsplit<CR><C-W><C-W>:edit %:p:h<CR>
 
+let g:nnn#session = 'local'
+
 " Hop
 nnoremap <silent> <leader><leader>w :HopWord<CR>
+nnoremap <silent> <leader><leader>b :HopWordBC<CR>
 nnoremap <silent> <leader><leader>f :HopChar1<CR>
+
+" Trouble
+nnoremap <silent> <leader>td :Trouble document_diagnostics<CR>
 
 " firenvim settings
 if exists('g:started_by_firenvim')
@@ -452,6 +458,7 @@ nnoremap <silent> <leader>gr :Gread<CR>
 " gitgutter shortcuts
 nmap ]h :Gitsigns next_hunk<CR>
 nmap [h :Gitsigns prev_hunk<CR>
+nnoremap <silent> <leader>th :Gitsigns setqflist<CR>
 
 " map Y to yank until EOL
 nnoremap Y y$
@@ -478,12 +485,9 @@ nnoremap <C-b> :History<CR>
 nnoremap <C-c> :History:<CR>
 nnoremap <silent> <leader>fl :Lines<CR>
 nnoremap <silent> <leader>fr :Rg<CR>
-let g:ranger_map_keys = 0
-nnoremap <silent> <leader>nt :Ranger<CR>
 
 " JavaScript
 let g:javascript_plugin_jsdoc = 1
-nnoremap <silent> <leader>fj :%!python -m json.tool<CR>
 
 " GitGutter Settings
 let g:gitgutter_map_keys = 0
@@ -504,9 +508,6 @@ augroup rainbow_lisp
   autocmd!
   autocmd FileType lisp,clojure,scheme RainbowParentheses
 augroup END
-
-" use a dark background
-set background=dark
 
 " startify
 let g:startify_fortune_use_unicode = 1
@@ -587,6 +588,9 @@ let g:candid_color_store = {
   \ "black": {"gui": "#20242c", "cterm256": "0"},
   \}
 let g:gruvbox_contrast_light = "soft"
+
+" use a dark background
+set background=dark
 
 set termguicolors
 colorscheme oak
