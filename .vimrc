@@ -166,12 +166,18 @@ nnoremap <silent> <C-n> :vsplit<CR><C-W><C-W>:edit %:p:h<CR>
 let g:nnn#session = 'local'
 
 " Hop
-nnoremap <silent> <leader><leader>w :HopWord<CR>
-nnoremap <silent> <leader><leader>b :HopWordBC<CR>
-nnoremap <silent> <leader><leader>f :HopChar1<CR>
+nnoremap <silent> <leader><leader>w <cmd>HopWord<CR>
+nnoremap <silent> <leader><leader>b <cmd>HopWordBC<CR>
+nnoremap <silent> <leader><leader>f <cmd>HopChar1<CR>
+vnoremap <silent> <leader><leader>w <cmd>HopWord<CR>
+vnoremap <silent> <leader><leader>b <cmd>HopWordBC<CR>
+vnoremap <silent> <leader><leader>f <cmd>HopChar1<CR>
 
 " Trouble
 nnoremap <silent> <leader>td :Trouble document_diagnostics<CR>
+nnoremap <silent> <leader>tr :Trouble lsp_references<CR>
+nnoremap <silent> <leader>tc :TodoTrouble<CR>
+nnoremap <silent> <leader>tq :TroubleClose<CR>
 
 " firenvim settings
 if exists('g:started_by_firenvim')
@@ -219,6 +225,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 " lsp
 lua <<EOF
+require('lualine').setup()
 local nvim_lsp = require('lspconfig')
 local aerial = require('aerial')
 aerial.setup({})
@@ -269,7 +276,7 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -357,6 +364,10 @@ end
 require("trouble").setup {
   mode = "document_diagnostics"
 }
+
+require("todo-comments").setup()
+
+require("which-key").setup()
 
 require("hop").setup()
 EOF

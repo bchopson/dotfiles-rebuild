@@ -47,7 +47,6 @@ alias night="alacritty-colorscheme apply $DARK_COLOR"
 alias toggle="alacritty-colorscheme toggle $LIGHT_COLOR $DARK_COLOR"
 
 alias fd=fdfind
-alias tdi="td --interactive"
 alias aerc="TERM=xterm-256color aerc"
 alias vg="nvim +GhostStart"
 alias gprv="gh pr view --web"

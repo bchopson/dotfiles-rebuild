@@ -55,7 +55,7 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'neovim/nvim-lspconfig'
 Plug 'phaazon/hop.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'bling/vim-airline'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'honza/vim-snippets'
 Plug 'Raimondi/delimitMate'
 Plug 'junegunn/vim-easy-align'
@@ -75,6 +75,8 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim', {'branch': 'main'}
+Plug 'folke/todo-comments.nvim', {'branch': 'main'}
+Plug 'folke/which-key.nvim'
 
 Plug 'mhinz/vim-startify'
 
