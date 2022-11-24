@@ -77,6 +77,8 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim', {'branch': 'main'}
 Plug 'folke/todo-comments.nvim', {'branch': 'main'}
 Plug 'folke/which-key.nvim'
+Plug 'folke/zen-mode.nvim'
+Plug 'folke/twilight.nvim'
 
 Plug 'mhinz/vim-startify'
 
@@ -130,5 +132,8 @@ Plug 'shaunsingh/moonlight.nvim', {'branch': 'pure-lua'}
 Plug 'rockerBOO/boo-colorscheme-nvim', {'branch': 'main'}
 Plug 'rebelot/kanagawa.nvim'
 Plug 'EdenEast/nightfox.nvim'
+Plug 'folke/tokyonight.nvim'
+Plug 'elvessousa/sobrio'
+
 
 call plug#end()

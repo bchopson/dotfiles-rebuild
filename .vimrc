@@ -167,17 +167,21 @@ let g:nnn#session = 'local'
 
 " Hop
 nnoremap <silent> <leader><leader>w <cmd>HopWord<CR>
-nnoremap <silent> <leader><leader>b <cmd>HopWordBC<CR>
+nnoremap <silent> <leader><leader>b <cmd>HopWord<CR>
 nnoremap <silent> <leader><leader>f <cmd>HopChar1<CR>
 vnoremap <silent> <leader><leader>w <cmd>HopWord<CR>
-vnoremap <silent> <leader><leader>b <cmd>HopWordBC<CR>
+vnoremap <silent> <leader><leader>b <cmd>HopWord<CR>
 vnoremap <silent> <leader><leader>f <cmd>HopChar1<CR>
+vnoremap <silent> <leader><leader>a <cmd>HopAnywhere<CR>
 
 " Trouble
 nnoremap <silent> <leader>td :Trouble document_diagnostics<CR>
 nnoremap <silent> <leader>tr :Trouble lsp_references<CR>
 nnoremap <silent> <leader>tc :TodoTrouble<CR>
 nnoremap <silent> <leader>tq :TroubleClose<CR>
+
+" ZenMode
+nnoremap <silent> <leader>z :ZenMode<CR>
 
 " firenvim settings
 if exists('g:started_by_firenvim')
@@ -235,6 +239,7 @@ for kind, sign in pairs(signs) do
   local name = 'DiagnosticSign' .. kind
   vim.fn.sign_define(name, { texthl = name, text = sign, numhl = name })
 end
+require('zen-mode').setup({})
 
 
 local on_attach = function(client, bufnr)
@@ -246,16 +251,16 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
 
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gt', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap("n", "<leader>sp", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  aerial.on_attach(client, bufnr)
 end
 
 -- completions
@@ -282,14 +287,30 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
     { name = 'path' },
-    { name = 'cmdline' },
     { name = 'emoji' },
   }, {
     { name = 'buffer' },
   })
 })
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- There is some sort of buggy interaction with which-key here
+-- cmp.setup.cmdline({ '/', '?' }, {
+--  mapping = cmp.mapping.preset.cmdline(),
+--  sources = {
+--    { name = 'buffer' }
+--  }
+-- })
+
+-- cmp.setup.cmdline(':', {
+--   mapping = cmp.mapping.preset.cmdline(),
+--  sources = cmp.config.sources({
+--    { name = 'path' }
+--  }, {
+--    { name = 'cmdline' }
+--  })
+--})
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local filetypes = {
     typescript = "eslint",
@@ -496,6 +517,7 @@ nnoremap <C-b> :History<CR>
 nnoremap <C-c> :History:<CR>
 nnoremap <silent> <leader>fl :Lines<CR>
 nnoremap <silent> <leader>fr :Rg<CR>
+nnoremap <silent> <leader>fc :Commands<CR>
 
 " JavaScript
 let g:javascript_plugin_jsdoc = 1
@@ -604,9 +626,7 @@ let g:gruvbox_contrast_light = "soft"
 set background=dark
 
 set termguicolors
-colorscheme oak
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'nisha'
+colorscheme kanagawa
 
 " load a personal vimrc if one exists
 let s:personalrc = expand($HOME . '/.personal.vimrc')
