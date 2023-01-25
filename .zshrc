@@ -85,8 +85,8 @@ fi
 command -v funky &>/dev/null && eval "$(funky --init zsh)"
 
 # fnm
-export PATH=/home/ben/.fnm:$PATH
-eval "`fnm env`"
+export PATH="$HOME/.fnm:$PATH"
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 # Terraform
 autoload -U +X bashcompinit && bashcompinit

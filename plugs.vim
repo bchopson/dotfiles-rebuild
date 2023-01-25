@@ -23,6 +23,8 @@ Plug 'mattn/emmet-vim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'mfussenegger/nvim-dap'
+Plug 'mfussenegger/nvim-dap-python'
+Plug 'vim-test/vim-test'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -112,6 +114,7 @@ Plug 'mileszs/ack.vim'
 
 " color theme stuff
 Plug 'rktjmp/lush.nvim', {'branch': 'main'}
+Plug 'folke/lsp-colors.nvim'
 
 " color themes
 Plug 'tomasr/molokai'
@@ -129,11 +132,9 @@ Plug 'cseelus/vim-colors-lucid'
 Plug 'vv9k/bogster'
 Plug 'savq/melange'
 Plug 'shaunsingh/moonlight.nvim', {'branch': 'pure-lua'}
-Plug 'rockerBOO/boo-colorscheme-nvim', {'branch': 'main'}
 Plug 'rebelot/kanagawa.nvim'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'folke/tokyonight.nvim'
-Plug 'elvessousa/sobrio'
 
 
 call plug#end()

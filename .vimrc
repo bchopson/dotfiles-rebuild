@@ -169,16 +169,26 @@ let g:nnn#session = 'local'
 nnoremap <silent> <leader><leader>w <cmd>HopWord<CR>
 nnoremap <silent> <leader><leader>b <cmd>HopWord<CR>
 nnoremap <silent> <leader><leader>f <cmd>HopChar1<CR>
+nnoremap <silent> <leader><leader>a <cmd>HopAnywhere<CR>
 vnoremap <silent> <leader><leader>w <cmd>HopWord<CR>
 vnoremap <silent> <leader><leader>b <cmd>HopWord<CR>
 vnoremap <silent> <leader><leader>f <cmd>HopChar1<CR>
 vnoremap <silent> <leader><leader>a <cmd>HopAnywhere<CR>
 
+" Tests
+nnoremap <silent> <leader>tr :TestLast<CR>
+nnoremap <silent> <leader>tn :TestNearest<CR>
+nnoremap <silent> <leader>tc :TestClass<CR>
+nnoremap <silent> <leader>tf :TestFile<CR>
+nnoremap <silent> <leader>tg :TestVisit<CR>
+nnoremap <silent> <leader>ta :TestSuite<CR>
+nnoremap <silent> <leader>tp :TestNearest --pdb<CR>
+
 " Trouble
-nnoremap <silent> <leader>td :Trouble document_diagnostics<CR>
-nnoremap <silent> <leader>tr :Trouble lsp_references<CR>
-nnoremap <silent> <leader>tc :TodoTrouble<CR>
-nnoremap <silent> <leader>tq :TroubleClose<CR>
+nnoremap <silent> <leader>dd :Trouble document_diagnostics<CR>
+nnoremap <silent> <leader>dr :Trouble lsp_references<CR>
+nnoremap <silent> <leader>dc :TodoTrouble<CR>
+nnoremap <silent> <leader>dq :TroubleClose<CR>
 
 " ZenMode
 nnoremap <silent> <leader>z :ZenMode<CR>
@@ -229,7 +239,12 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 " lsp
 lua <<EOF
-require('lualine').setup()
+require('lualine').setup({
+  sections = {
+    lualine_b = {'filename'},
+    lualine_c = {'branch', 'diff', 'diagnostics'},
+  },
+})
 local nvim_lsp = require('lspconfig')
 local aerial = require('aerial')
 aerial.setup({})
@@ -240,6 +255,7 @@ for kind, sign in pairs(signs) do
   vim.fn.sign_define(name, { texthl = name, text = sign, numhl = name })
 end
 require('zen-mode').setup({})
+require('dap-python').setup('~/.local/share/venvs/debugpy/bin/python')
 
 
 local on_attach = function(client, bufnr)
@@ -440,6 +456,11 @@ endif
 autocmd FileType python xnoremap <buffer> <Leader>ff :'<,'>BlackMacchiato<cr>
 autocmd FileType python nnoremap <buffer> <Leader>ff :BlackMacchiato<cr>
 
+autocmd FileType xml xnoremap <buffer> <Leader>ff :%!xmllint --format %<cr>
+autocmd FileType xml nnoremap <buffer> <Leader>ff :%!xmllint --format %<cr>
+
+autocmd FileType terraform setlocal commentstring=#\ %s
+
 " clear highlighting and redraw the screen
 nnoremap <silent> <leader>l :redraw!<CR>:nohl<CR><ESC>
 
@@ -478,6 +499,9 @@ nnoremap <silent> <leader>h :split<CR><C-w><C-w>
 nnoremap <silent> <leader>v :vsplit<CR><C-w><C-w>
 nnoremap <silent> <leader>q :q<CR>
 nnoremap <silent> <leader>Q :q!<CR>
+
+" terminal mappings
+tnoremap <Esc> <C-\><C-n>
 
 " fugitive shortcuts
 nnoremap <silent> <leader>gl :0Gclog<CR>
@@ -544,7 +568,7 @@ augroup END
 
 " startify
 let g:startify_fortune_use_unicode = 1
-let g:startify_custom_header = startify#fortune#boxed()
+let g:startify_custom_header = []
 let g:startify_change_to_dir = 0
 let g:startify_bookmarks = [{'v': '~/.vimrc'}, {'z': '~/.zshrc'}, {'p': '~/plugs.vim'}, {'m': '~/.config/alacritty/alacritty.yml'}]
 
@@ -621,6 +645,11 @@ let g:candid_color_store = {
   \ "black": {"gui": "#20242c", "cterm256": "0"},
   \}
 let g:gruvbox_contrast_light = "soft"
+let g:mellow_italic_keywords = 1
+lua <<EOF
+-- Make diagnostics less harsh
+require('kanagawa').setup({ colors = { samuraiRed = '#FF5D62' } })
+EOF
 
 " use a dark background
 set background=dark
