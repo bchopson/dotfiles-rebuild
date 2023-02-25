@@ -24,6 +24,7 @@ Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'mfussenegger/nvim-dap-python'
+Plug 'preservim/vimux'
 Plug 'vim-test/vim-test'
 
 " Completion

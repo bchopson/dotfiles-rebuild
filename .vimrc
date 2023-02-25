@@ -176,6 +176,8 @@ vnoremap <silent> <leader><leader>f <cmd>HopChar1<CR>
 vnoremap <silent> <leader><leader>a <cmd>HopAnywhere<CR>
 
 " Tests
+let test#strategy = 'vimux'
+let g:VimuxHeight = "40"
 nnoremap <silent> <leader>tr :TestLast<CR>
 nnoremap <silent> <leader>tn :TestNearest<CR>
 nnoremap <silent> <leader>tc :TestClass<CR>
@@ -183,6 +185,7 @@ nnoremap <silent> <leader>tf :TestFile<CR>
 nnoremap <silent> <leader>tg :TestVisit<CR>
 nnoremap <silent> <leader>ta :TestSuite<CR>
 nnoremap <silent> <leader>tp :TestNearest --pdb<CR>
+nnoremap <silent> <leader>tq :VimuxCloseRunner<CR>
 
 " Trouble
 nnoremap <silent> <leader>dd :Trouble document_diagnostics<CR>
@@ -276,7 +279,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap("n", "<leader>sp", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap("n", "<leader>sp", "<cmd>lua vim.lsp.buf.format {async=true}<CR>", opts)
 end
 
 -- completions
