@@ -1,5 +1,6 @@
 export VISUAL=nvim
 export EDITOR=$VISUAL
+export TERM=xterm-256color
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgreprc"
 export ZSH_TMUX_AUTOSTART=true
@@ -47,8 +48,6 @@ alias night="alacritty-colorscheme apply $DARK_COLOR"
 alias toggle="alacritty-colorscheme toggle $LIGHT_COLOR $DARK_COLOR"
 
 alias fd=fdfind
-alias aerc="TERM=xterm-256color aerc"
-alias vg="nvim +GhostStart"
 alias gprv="gh pr view --web"
 alias pm="playerctl metadata"
 alias wttr="curl wttr.in"
@@ -63,17 +62,10 @@ setopt CORRECT
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # starship
 eval "$(starship init zsh)"
-
-# direnv
-eval "$(direnv hook zsh)"
-alias dr="direnv reload"
 
 alias tl="tmuxp load -y"
 
@@ -81,13 +73,12 @@ if [[ -a ~/.personal.after.rc ]]; then
   source ~/.personal.after.rc
 fi
 
-# setup funky
-command -v funky &>/dev/null && eval "$(funky --init zsh)"
-
-# fnm
-export PATH="$HOME/.fnm:$PATH"
-eval "$(fnm env --use-on-cd --shell zsh)"
-
 # Terraform
 autoload -U +X bashcompinit && bashcompinit
+eval "$(register-python-argcomplete pipx)"
 complete -o nospace -C /usr/bin/terraform terraform
+
+# Created by `pipx` on 2023-04-21 02:48:00
+export PATH="$PATH:/Users/ben/.local/bin"
+eval "$(rtx activate zsh)"
+eval "$(zoxide init zsh)"
