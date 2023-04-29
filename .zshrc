@@ -82,3 +82,6 @@ complete -o nospace -C /usr/bin/terraform terraform
 export PATH="$PATH:/Users/ben/.local/bin"
 eval "$(rtx activate zsh)"
 eval "$(zoxide init zsh)"
+
+# setup funky
+command -v funky &>/dev/null && eval "$(funky --init zsh)"

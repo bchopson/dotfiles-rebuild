@@ -7,7 +7,8 @@ tags.temp
 .envrc
 .funky
 .python-version
-.direnv
+.venv
+.rtx.toml
 .nvmrc
 *.bak
 .junk-drawer/
