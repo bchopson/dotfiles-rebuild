@@ -1,0 +1,23 @@
+imap jj <Esc>
+imap kk <Esc>
+let mapleader=","
+set easymotion
+set surround
+set multiple-cursors
+set commentary
+imap <leader><leader>f AceAction<CR>
+set ideajoin
+set ignorecase smartcase
+
+" shortcuts for moving around split windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" shortcuts for opening new split windows
+nnoremap <silent> <leader>h :split<CR><C-w><C-w>
+nnoremap <silent> <leader>v :vsplit<CR><C-w><C-w>
+nnoremap <silent> <leader>w :w<CR>
+nnoremap <silent> <leader>q :q<CR>
+nnoremap <silent> <leader>Q :q!<CR>
