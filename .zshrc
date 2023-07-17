@@ -78,8 +78,8 @@ autoload -U +X bashcompinit && bashcompinit
 eval "$(register-python-argcomplete pipx)"
 complete -o nospace -C /usr/bin/terraform terraform
 
-# Created by `pipx` on 2023-04-21 02:48:00
-export PATH="$PATH:/Users/ben/.local/bin"
+# Created by `pipx`
+export PATH="$PATH:~/.local/bin"
 eval "$(rtx activate zsh)"
 eval "$(zoxide init zsh)"
 
