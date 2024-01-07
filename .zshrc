@@ -37,24 +37,23 @@ antigen bundle ssh-agent
 antigen bundle vi-mode
 antigen bundle fzf
 antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle docker
 antigen bundle docker-compose
 
-LIGHT_COLOR="gruvbox_light.yaml"
-DARK_COLOR="oak.yml"
+antigen apply
 
-alias day="alacritty-colorscheme apply $LIGHT_COLOR"
-alias night="alacritty-colorscheme apply $DARK_COLOR"
-alias toggle="alacritty-colorscheme toggle $LIGHT_COLOR $DARK_COLOR"
+autoload -Uz compinit bashcompinit
+compinit
+bashcompinit
 
-alias fd=fdfind
+if [[ `uname` != "Darwin" ]]; then
+  alias fd=fdfind
+fi
 alias gprv="gh pr view --web"
 alias pm="playerctl metadata"
 alias wttr="curl wttr.in"
-
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-antigen apply
+alias gdh="git diff HEAD^"
 
 # no_share_history is better for tmux
 setopt no_share_history
@@ -74,14 +73,14 @@ if [[ -a ~/.personal.after.rc ]]; then
 fi
 
 # Terraform
-autoload -U +X bashcompinit && bashcompinit
 eval "$(register-python-argcomplete pipx)"
 complete -o nospace -C /usr/bin/terraform terraform
 
-# Created by `pipx`
-export PATH="$PATH:~/.local/bin"
-eval "$(rtx activate zsh)"
+# Created by `pipx` on 2023-04-21 02:48:00
+export PATH="$PATH:/Users/ben/.local/bin"
+eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 
 # setup funky
 command -v funky &>/dev/null && eval "$(funky --init zsh)"
+SF_AC_ZSH_SETUP_PATH=/Users/ben/Library/Caches/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup

@@ -9,7 +9,9 @@ tags.temp
 .python-version
 .venv
 .rtx.toml
+.rtx.local.toml
 .nvmrc
 *.bak
 .junk-drawer/
 Session.vim
+.DS_Store
