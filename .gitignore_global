@@ -8,8 +8,8 @@ tags.temp
 .funky
 .python-version
 .venv
-.rtx.toml
-.rtx.local.toml
+.mise.toml
+.mise.local.toml
 .nvmrc
 *.bak
 .junk-drawer/

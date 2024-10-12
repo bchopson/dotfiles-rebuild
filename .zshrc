@@ -6,6 +6,11 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/rg/ripgreprc"
 export ZSH_TMUX_AUTOSTART=true
 # Up arrow history completion
 export DEBIAN_PREVENT_KEYBOARD_CHANGES=yes
+
+if [[ -a ~/.zshrc.local ]]; then
+  source ~/.zshrc.local
+fi
+
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 # start typing + [Up-Arrow] - fuzzy find history forward
@@ -67,6 +72,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 eval "$(starship init zsh)"
 
 alias tl="tmuxp load -y"
+alias opr="op run --"
+alias oprn="op run --no-masking --"
 
 if [[ -a ~/.personal.after.rc ]]; then
   source ~/.personal.after.rc
@@ -81,6 +88,4 @@ export PATH="$PATH:/Users/ben/.local/bin"
 eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 
-# setup funky
-command -v funky &>/dev/null && eval "$(funky --init zsh)"
 SF_AC_ZSH_SETUP_PATH=/Users/ben/Library/Caches/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
