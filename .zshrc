@@ -59,6 +59,7 @@ alias gprv="gh pr view --web"
 alias pm="playerctl metadata"
 alias wttr="curl wttr.in"
 alias gdh="git diff HEAD^"
+alias uvr="uv run"
 
 # no_share_history is better for tmux
 setopt no_share_history
@@ -74,6 +75,7 @@ eval "$(starship init zsh)"
 alias tl="tmuxp load -y"
 alias opr="op run --"
 alias oprn="op run --no-masking --"
+alias myip="ipconfig getifaddr en0"
 
 if [[ -a ~/.personal.after.rc ]]; then
   source ~/.personal.after.rc
